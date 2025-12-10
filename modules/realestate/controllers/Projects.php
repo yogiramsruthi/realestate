@@ -83,7 +83,7 @@ class Projects extends AdminController
         if ($response) {
             set_alert('success', _l('realestate_project_deleted'));
         } else {
-            set_alert('warning', 'Cannot delete project with associated plots');
+            set_alert('warning', _l('realestate_project_delete_error'));
         }
         redirect(admin_url('realestate/projects'));
     }

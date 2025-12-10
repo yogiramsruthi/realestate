@@ -26,6 +26,7 @@ $lang['realestate_project_status'] = 'Status';
 $lang['realestate_project_added'] = 'Project added successfully';
 $lang['realestate_project_updated'] = 'Project updated successfully';
 $lang['realestate_project_deleted'] = 'Project deleted successfully';
+$lang['realestate_project_delete_error'] = 'Cannot delete project with associated plots';
 
 # Plots
 $lang['realestate_plot'] = 'Plot';
@@ -42,6 +43,7 @@ $lang['realestate_plot_description'] = 'Description';
 $lang['realestate_plot_added'] = 'Plot added successfully';
 $lang['realestate_plot_updated'] = 'Plot updated successfully';
 $lang['realestate_plot_deleted'] = 'Plot deleted successfully';
+$lang['realestate_plot_delete_error'] = 'Cannot delete plot with associated bookings';
 
 # Plot Status
 $lang['realestate_status_available'] = 'Available';

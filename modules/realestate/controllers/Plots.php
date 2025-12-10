@@ -87,7 +87,7 @@ class Plots extends AdminController
         if ($response) {
             set_alert('success', _l('realestate_plot_deleted'));
         } else {
-            set_alert('warning', 'Cannot delete plot with associated bookings');
+            set_alert('warning', _l('realestate_plot_delete_error'));
         }
         redirect(admin_url('realestate/plots'));
     }
