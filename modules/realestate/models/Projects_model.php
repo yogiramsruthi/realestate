@@ -104,17 +104,14 @@ class Projects_model extends App_Model
      */
     public function update_plot_counts($project_id)
     {
+        $this->db->select('COUNT(*) as total_plots, SUM(CASE WHEN status = "available" THEN 1 ELSE 0 END) as available_plots');
         $this->db->where('project_id', $project_id);
-        $total_plots = $this->db->count_all_results(db_prefix() . 'realestate_plots');
-
-        $this->db->where('project_id', $project_id);
-        $this->db->where('status', 'available');
-        $available_plots = $this->db->count_all_results(db_prefix() . 'realestate_plots');
+        $result = $this->db->get(db_prefix() . 'realestate_plots')->row();
 
         $this->db->where('id', $project_id);
         $this->db->update(db_prefix() . 'realestate_projects', [
-            'total_plots' => $total_plots,
-            'available_plots' => $available_plots,
+            'total_plots' => $result->total_plots,
+            'available_plots' => $result->available_plots,
         ]);
     }
 

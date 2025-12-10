@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') or exit('No direct script access allowed');
+
 # Real Estate Module Language File
 
 $lang['realestate'] = 'Real Estate';

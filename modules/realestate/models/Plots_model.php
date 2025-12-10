@@ -71,6 +71,11 @@ class Plots_model extends App_Model
         
         // Get old data to update project counts if needed
         $old_plot = $this->get($id);
+        
+        if (!$old_plot) {
+            return false;
+        }
+        
         $old_project_id = $old_plot->project_id;
         
         $this->db->where('id', $id);

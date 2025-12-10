@@ -10,6 +10,17 @@ class Bookings_model extends App_Model
     }
 
     /**
+     * Calculate balance amount
+     * @param  float $total_amount
+     * @param  float $paid_amount
+     * @return float
+     */
+    private function calculate_balance($total_amount, $paid_amount)
+    {
+        return $total_amount - $paid_amount;
+    }
+
+    /**
      * Get bookings
      * @param  mixed $id
      * @param  array $where
@@ -48,7 +59,7 @@ class Bookings_model extends App_Model
         $data['date_created'] = date('Y-m-d H:i:s');
         
         // Calculate balance amount
-        $data['balance_amount'] = $data['total_amount'] - $data['paid_amount'];
+        $data['balance_amount'] = $this->calculate_balance($data['total_amount'], $data['paid_amount']);
         
         $this->db->insert(db_prefix() . 'realestate_bookings', $data);
         $insert_id = $this->db->insert_id();
@@ -77,7 +88,7 @@ class Bookings_model extends App_Model
         
         // Calculate balance amount if amounts are provided
         if (isset($data['total_amount']) && isset($data['paid_amount'])) {
-            $data['balance_amount'] = $data['total_amount'] - $data['paid_amount'];
+            $data['balance_amount'] = $this->calculate_balance($data['total_amount'], $data['paid_amount']);
         }
         
         $this->db->where('id', $id);
@@ -141,7 +152,7 @@ class Bookings_model extends App_Model
     {
         $booking = $this->get($id);
         $new_paid_amount = $booking->paid_amount + $amount;
-        $new_balance = $booking->total_amount - $new_paid_amount;
+        $new_balance = $this->calculate_balance($booking->total_amount, $new_paid_amount);
 
         $this->db->where('id', $id);
         $this->db->update(db_prefix() . 'realestate_bookings', [
