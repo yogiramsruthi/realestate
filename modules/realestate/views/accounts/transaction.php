@@ -49,8 +49,8 @@
                             <div class="col-md-6">
                                 <?php 
                                 $transaction_types = [
-                                    ['value' => 'payment', 'label' => 'Payment'],
-                                    ['value' => 'refund', 'label' => 'Refund'],
+                                    ['value' => 'payment', 'label' => _l('realestate_payment')],
+                                    ['value' => 'refund', 'label' => _l('realestate_refund')],
                                 ];
                                 echo render_select('transaction_type', $transaction_types, ['value', 'label'], 'realestate_transaction_type', 'payment'); 
                                 ?>

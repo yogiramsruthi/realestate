@@ -125,6 +125,9 @@ $lang['realestate_select_plot'] = 'Select Plot';
 $lang['realestate_select_customer'] = 'Select Customer';
 $lang['realestate_select_staff'] = 'Select Staff';
 $lang['realestate_no_records'] = 'No records found';
+$lang['realestate_no_project'] = 'No Project';
+$lang['realestate_payment'] = 'Payment';
+$lang['realestate_refund'] = 'Refund';
 
 # Dashboard
 $lang['realestate_total_projects'] = 'Total Projects';

@@ -22,7 +22,7 @@
                             </div>
                             <div class="col-md-6">
                                 <?php 
-                                $project_options = [['value' => '', 'label' => 'No Project']];
+                                $project_options = [['value' => '', 'label' => _l('realestate_no_project')]];
                                 foreach ($projects as $project) {
                                     $project_options[] = ['value' => $project['id'], 'label' => $project['name']];
                                 }
