@@ -1,0 +1,156 @@
+/* Real Estate Module Custom Styles */
+
+.real-estate-stats-card {
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.real-estate-stats-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 32px;
+}
+
+.real-estate-stats-card p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.plot-status-available {
+    background-color: #28a745;
+    color: white;
+}
+
+.plot-status-booked {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.plot-status-sold {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.plot-status-reserved {
+    background-color: #6c757d;
+    color: white;
+}
+
+.plot-status-blocked {
+    background-color: #dc3545;
+    color: white;
+}
+
+.booking-timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.booking-timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e0e0e0;
+}
+
+.booking-timeline-item {
+    position: relative;
+    padding: 15px 0;
+}
+
+.booking-timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 20px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #007bff;
+}
+
+.installment-paid {
+    background-color: #d4edda;
+}
+
+.installment-pending {
+    background-color: #fff3cd;
+}
+
+.installment-overdue {
+    background-color: #f8d7da;
+}
+
+.project-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+
+.project-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.plot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.plot-grid-item {
+    border: 2px solid #e0e0e0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.plot-grid-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.plot-grid-item.available {
+    border-color: #28a745;
+    background-color: #f0f9f4;
+}
+
+.plot-grid-item.booked {
+    border-color: #ffc107;
+    background-color: #fff9e6;
+}
+
+.plot-grid-item.sold {
+    border-color: #17a2b8;
+    background-color: #e7f7f9;
+}
+
+.plot-grid-item.blocked {
+    border-color: #dc3545;
+    background-color: #fbe9eb;
+    opacity: 0.6;
+}
+
+.payment-schedule {
+    margin-top: 20px;
+}
+
+.payment-schedule table {
+    width: 100%;
+}
+
+.payment-schedule .paid-row {
+    background-color: #d4edda;
+}
+
+.payment-schedule .overdue-row {
+    background-color: #f8d7da;
+}
