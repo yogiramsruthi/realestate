@@ -233,3 +233,15 @@ if (!$CI->db->table_exists(db_prefix() . 'realestate_documents')) {
         KEY `project_id` (`project_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
 }
+
+if (!$CI->db->table_exists(db_prefix() . 'realestate_settings')) {
+    $CI->db->query('CREATE TABLE `' . db_prefix() . "realestate_settings` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `setting_key` varchar(255) NOT NULL,
+        `setting_value` text DEFAULT NULL,
+        `created_at` datetime NOT NULL,
+        `updated_at` datetime DEFAULT NULL,
+        PRIMARY KEY (`id`),
+        UNIQUE KEY `setting_key` (`setting_key`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
+}

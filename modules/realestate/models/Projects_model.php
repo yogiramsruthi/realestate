@@ -172,4 +172,17 @@ class Projects_model extends App_Model
         
         return $stats;
     }
+
+    /**
+     * Get count of projects
+     * @param array $where
+     * @return int
+     */
+    public function get_count($where = [])
+    {
+        if (is_array($where) && count($where) > 0) {
+            $this->db->where($where);
+        }
+        return $this->db->count_all_results(db_prefix() . 'realestate_projects');
+    }
 }

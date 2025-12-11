@@ -331,3 +331,72 @@ $lang['realestate_total_bookings'] = 'Total Bookings';
 $lang['realestate_total_revenue'] = 'Total Revenue';
 $lang['realestate_recent_bookings'] = 'Recent Bookings';
 $lang['realestate_project_overview'] = 'Project Overview';
+
+# Settings
+$lang['realestate_settings'] = 'Settings';
+$lang['realestate_general_settings'] = 'General Settings';
+$lang['realestate_theme_settings'] = 'Theme Settings';
+$lang['realestate_notification_settings'] = 'Notification Settings';
+$lang['realestate_report_settings'] = 'Report Settings';
+$lang['realestate_settings_updated'] = 'Settings updated successfully';
+$lang['realestate_company_name'] = 'Company Name';
+$lang['realestate_enable_public_portal'] = 'Enable Public Portal';
+$lang['realestate_currency'] = 'Currency';
+$lang['realestate_date_format'] = 'Date Format';
+$lang['realestate_date_format_help'] = 'PHP date format (e.g., Y-m-d for 2025-01-15)';
+$lang['realestate_default_language'] = 'Default Language';
+
+# Theme
+$lang['realestate_theme_customization'] = 'Theme Customization';
+$lang['realestate_theme_help'] = 'Customize the look and feel of the Real Estate module';
+$lang['realestate_primary_color'] = 'Primary Color';
+$lang['realestate_secondary_color'] = 'Secondary Color';
+$lang['realestate_success_color'] = 'Success Color';
+$lang['realestate_warning_color'] = 'Warning Color';
+$lang['realestate_danger_color'] = 'Danger Color';
+$lang['realestate_font_family'] = 'Font Family';
+$lang['realestate_font_size'] = 'Font Size';
+$lang['realestate_theme_updated'] = 'Theme updated successfully';
+$lang['realestate_reset_defaults'] = 'Reset to Defaults';
+
+# Notifications
+$lang['realestate_notification_preferences'] = 'Notification Preferences';
+$lang['realestate_notifications_updated'] = 'Notification settings updated successfully';
+$lang['realestate_notify_new_project'] = 'Notify on New Project Creation';
+$lang['realestate_notify_plot_booking'] = 'Notify on Plot Booking';
+$lang['realestate_notify_payment_received'] = 'Notify on Payment Received';
+$lang['realestate_notify_reservation_expiry'] = 'Notify on Reservation Expiry';
+$lang['realestate_notification_recipients'] = 'Notification Recipients';
+$lang['realestate_notification_recipients_help'] = 'Enter comma-separated email addresses';
+$lang['realestate_notification_method'] = 'Notification Method';
+$lang['realestate_email'] = 'Email';
+$lang['realestate_email_and_system'] = 'Email and System';
+
+# Reports
+$lang['realestate_scheduled_reports'] = 'Scheduled Reports';
+$lang['realestate_report_settings_updated'] = 'Report settings updated successfully';
+$lang['realestate_enable_scheduled_reports'] = 'Enable Scheduled Reports';
+$lang['realestate_report_frequency'] = 'Report Frequency';
+$lang['realestate_daily'] = 'Daily';
+$lang['realestate_weekly'] = 'Weekly';
+$lang['realestate_monthly'] = 'Monthly';
+$lang['realestate_report_day'] = 'Report Day';
+$lang['realestate_report_day_help'] = 'Day of week for weekly reports';
+$lang['realestate_report_time'] = 'Report Time';
+$lang['realestate_report_recipients'] = 'Report Recipients';
+$lang['realestate_report_content'] = 'Report Content';
+$lang['realestate_include_projects_summary'] = 'Include Projects Summary';
+$lang['realestate_include_plots_summary'] = 'Include Plots Summary';
+$lang['realestate_include_bookings_summary'] = 'Include Bookings Summary';
+$lang['realestate_include_revenue_summary'] = 'Include Revenue Summary';
+$lang['realestate_include_analytics'] = 'Include Analytics';
+$lang['realestate_send_test_report'] = 'Send Test Report';
+$lang['realestate_test_report_sent'] = 'Test report sent successfully';
+$lang['realestate_test_report_failed'] = 'Failed to send test report';
+$lang['realestate_monday'] = 'Monday';
+$lang['realestate_tuesday'] = 'Tuesday';
+$lang['realestate_wednesday'] = 'Wednesday';
+$lang['realestate_thursday'] = 'Thursday';
+$lang['realestate_friday'] = 'Friday';
+$lang['realestate_saturday'] = 'Saturday';
+$lang['realestate_sunday'] = 'Sunday';

@@ -100,4 +100,23 @@ class Transactions_model extends App_Model
         $this->db->order_by('transaction_date', 'desc');
         return $this->db->get(db_prefix() . 'realestate_transactions')->result_array();
     }
+
+    /**
+     * Get total revenue
+     * @param string $date_from
+     * @param string $date_to
+     * @return float
+     */
+    public function get_total_revenue($date_from = null, $date_to = null)
+    {
+        $this->db->select_sum('amount');
+        
+        if ($date_from && $date_to) {
+            $this->db->where('transaction_date >=', $date_from);
+            $this->db->where('transaction_date <=', $date_to);
+        }
+        
+        $result = $this->db->get(db_prefix() . 'realestate_transactions')->row();
+        return $result->amount ? $result->amount : 0;
+    }
 }

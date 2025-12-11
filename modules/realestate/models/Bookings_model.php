@@ -183,4 +183,34 @@ class Bookings_model extends App_Model
         
         return $stats;
     }
+
+    /**
+     * Get count of bookings
+     * @param array $where
+     * @return int
+     */
+    public function get_count($where = [])
+    {
+        if (isset($where['date_from']) && isset($where['date_to'])) {
+            $this->db->where('booking_date >=', $where['date_from']);
+            $this->db->where('booking_date <=', $where['date_to']);
+            unset($where['date_from'], $where['date_to']);
+        }
+        
+        if (is_array($where) && count($where) > 0) {
+            $this->db->where($where);
+        }
+        return $this->db->count_all_results(db_prefix() . 'realestate_bookings');
+    }
+
+    /**
+     * Get total pending amount
+     * @return float
+     */
+    public function get_total_pending_amount()
+    {
+        $this->db->select('SUM(total_amount - paid_amount) as pending');
+        $result = $this->db->get(db_prefix() . 'realestate_bookings')->row();
+        return $result->pending ? $result->pending : 0;
+    }
 }
