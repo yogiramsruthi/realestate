@@ -20,32 +20,36 @@
                         <table class="table dt-table table-projects">
                             <thead>
                                 <tr>
+                                    <th><?php echo _l('realestate_project_code'); ?></th>
                                     <th><?php echo _l('realestate_project_name'); ?></th>
-                                    <th><?php echo _l('realestate_project_location'); ?></th>
+                                    <th><?php echo _l('realestate_district'); ?></th>
                                     <th><?php echo _l('realestate_project_type'); ?></th>
                                     <th><?php echo _l('realestate_total_plots'); ?></th>
                                     <th><?php echo _l('realestate_available_plots'); ?></th>
                                     <th><?php echo _l('realestate_project_status'); ?></th>
-                                    <th><?php echo _l('realestate_start_date'); ?></th>
                                     <th><?php echo _l('realestate_actions'); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($projects as $project) { ?>
                                     <tr>
+                                        <td><?php echo $project['project_code']; ?></td>
                                         <td><?php echo $project['name']; ?></td>
-                                        <td><?php echo $project['location']; ?></td>
+                                        <td><?php echo $project['district']; ?></td>
                                         <td><?php echo $project['project_type']; ?></td>
                                         <td><?php echo $project['total_plots']; ?></td>
                                         <td><?php echo $project['available_plots']; ?></td>
                                         <td>
                                             <?php if ($project['status'] == 'active') { ?>
-                                                <span class="label label-success"><?php echo _l('realestate_active'); ?></span>
+                                                <span class="label label-success"><?php echo _l('realestate_status_active'); ?></span>
+                                            <?php } elseif ($project['status'] == 'draft') { ?>
+                                                <span class="label label-warning"><?php echo _l('realestate_status_draft'); ?></span>
+                                            <?php } elseif ($project['status'] == 'archived') { ?>
+                                                <span class="label label-default"><?php echo _l('realestate_status_archived'); ?></span>
                                             <?php } else { ?>
-                                                <span class="label label-default"><?php echo _l('realestate_inactive'); ?></span>
+                                                <span class="label label-info"><?php echo $project['status']; ?></span>
                                             <?php } ?>
                                         </td>
-                                        <td><?php echo _d($project['start_date']); ?></td>
                                         <td>
                                             <?php if (has_permission('realestate', '', 'edit')) { ?>
                                                 <a href="<?php echo admin_url('realestate/projects/project/' . $project['id']); ?>" class="btn btn-default btn-icon btn-sm">

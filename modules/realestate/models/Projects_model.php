@@ -17,8 +17,11 @@ class Projects_model extends App_Model
     public function get($id = '', $where = [])
     {
         if (is_numeric($id)) {
-            $this->db->where('id', $id);
-            return $this->db->get(db_prefix() . 'realestate_projects')->row();
+            $this->db->select('p.*, CONCAT(s.firstname, " ", s.lastname) as manager_name');
+            $this->db->from(db_prefix() . 'realestate_projects p');
+            $this->db->join(db_prefix() . 'staff s', 's.staffid = p.project_manager', 'left');
+            $this->db->where('p.id', $id);
+            return $this->db->get()->row();
         }
 
         if (is_array($where) && count($where) > 0) {
@@ -27,6 +30,42 @@ class Projects_model extends App_Model
 
         $this->db->order_by('date_created', 'desc');
         return $this->db->get(db_prefix() . 'realestate_projects')->result_array();
+    }
+
+    /**
+     * Generate project code
+     * @param string $project_short_name
+     * @return string
+     */
+    public function generate_project_code($project_short_name = '')
+    {
+        $year = date('Y');
+        
+        // Get the last project code for this year
+        $this->db->select('project_code');
+        $this->db->like('project_code', '-' . $year . '-', 'both');
+        $this->db->order_by('id', 'desc');
+        $this->db->limit(1);
+        $last_project = $this->db->get(db_prefix() . 'realestate_projects')->row();
+        
+        $serial_number = 1;
+        if ($last_project && $last_project->project_code) {
+            // Extract serial number from last project code
+            $parts = explode('-', $last_project->project_code);
+            if (count($parts) == 3) {
+                $serial_number = intval($parts[2]) + 1;
+            }
+        }
+        
+        // Default short name if not provided
+        if (empty($project_short_name)) {
+            $project_short_name = 'PRJ';
+        }
+        
+        // Generate code: SHORTNAME-YEAR-SERIALNUMBER
+        $project_code = strtoupper($project_short_name) . '-' . $year . '-' . str_pad($serial_number, 5, '0', STR_PAD_LEFT);
+        
+        return $project_code;
     }
 
     /**

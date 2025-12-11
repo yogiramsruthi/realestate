@@ -67,9 +67,13 @@
                                                     <td><?php echo $project['available_plots']; ?></td>
                                                     <td>
                                                         <?php if ($project['status'] == 'active') { ?>
-                                                            <span class="label label-success"><?php echo _l('realestate_active'); ?></span>
+                                                            <span class="label label-success"><?php echo _l('realestate_status_active'); ?></span>
+                                                        <?php } elseif ($project['status'] == 'draft') { ?>
+                                                            <span class="label label-warning"><?php echo _l('realestate_status_draft'); ?></span>
+                                                        <?php } elseif ($project['status'] == 'archived') { ?>
+                                                            <span class="label label-default"><?php echo _l('realestate_status_archived'); ?></span>
                                                         <?php } else { ?>
-                                                            <span class="label label-default"><?php echo _l('realestate_inactive'); ?></span>
+                                                            <span class="label label-info"><?php echo $project['status']; ?></span>
                                                         <?php } ?>
                                                     </td>
                                                 </tr>

@@ -17,9 +17,13 @@ $lang['realestate_project'] = 'Project';
 $lang['realestate_add_project'] = 'Add Project';
 $lang['realestate_edit_project'] = 'Edit Project';
 $lang['realestate_project_name'] = 'Project Name';
+$lang['realestate_project_code'] = 'Project Code';
+$lang['realestate_project_short_name'] = 'Project Short Name';
+$lang['realestate_generate_code'] = 'Generate Code';
 $lang['realestate_project_description'] = 'Description';
 $lang['realestate_project_location'] = 'Location';
 $lang['realestate_project_type'] = 'Project Type';
+$lang['realestate_project_manager'] = 'Project Manager';
 $lang['realestate_total_plots'] = 'Total Plots';
 $lang['realestate_available_plots'] = 'Available Plots';
 $lang['realestate_start_date'] = 'Start Date';
@@ -29,6 +33,50 @@ $lang['realestate_project_added'] = 'Project added successfully';
 $lang['realestate_project_updated'] = 'Project updated successfully';
 $lang['realestate_project_deleted'] = 'Project deleted successfully';
 $lang['realestate_project_delete_error'] = 'Cannot delete project with associated plots';
+
+# Project Status
+$lang['realestate_status_draft'] = 'Draft';
+$lang['realestate_status_active'] = 'Active';
+$lang['realestate_status_archived'] = 'Archived';
+
+# Location Details
+$lang['realestate_location_details'] = 'Location Details';
+$lang['realestate_district'] = 'District';
+$lang['realestate_area_taluk'] = 'Area / Taluk';
+$lang['realestate_village'] = 'Village';
+$lang['realestate_location_map_url'] = 'Location Map (Google URL)';
+$lang['realestate_nearby_landmarks'] = 'Nearby Landmarks';
+
+# Ownership & Pricing
+$lang['realestate_ownership_pricing'] = 'Ownership & Pricing';
+$lang['realestate_total_owners'] = 'Total No. of Owners';
+$lang['realestate_power_of_attorney'] = 'Power of Attorney';
+$lang['realestate_total_acres'] = 'Total Acres';
+$lang['realestate_total_sqft'] = 'Total Sq.ft';
+$lang['realestate_total_approved_sqft'] = 'Total Approved Sq.ft';
+$lang['realestate_owner_price_per_sqft'] = 'Owner Price / Sq.ft';
+$lang['realestate_min_selling_price_per_sqft'] = 'Min Selling Price / Sq.ft';
+$lang['realestate_max_selling_price_per_sqft'] = 'Max Selling Price / Sq.ft';
+$lang['realestate_commission_type'] = 'Commission Type';
+$lang['realestate_commission_percentage'] = 'Commission %';
+
+# Commission Types
+$lang['realestate_commission_fixed'] = 'Fixed Amount';
+$lang['realestate_commission_percentage_type'] = 'Percentage';
+$lang['realestate_commission_tiered'] = 'Tiered';
+
+# Approvals & Compliance
+$lang['realestate_approvals_compliance'] = 'Approvals & Compliance';
+$lang['realestate_dtcp_approval'] = 'DTCP Approval';
+$lang['realestate_rera_approval'] = 'RERA Approval';
+$lang['realestate_bdo_approval'] = 'BDO Approval';
+$lang['realestate_panchayath_78_go'] = 'Local Panchayath 78 GO';
+$lang['realestate_farm_land'] = 'Farm Land';
+$lang['realestate_cmda_approval'] = 'CMDA Approval';
+$lang['realestate_other_approvals'] = 'Other Approvals';
+
+# Basic Info
+$lang['realestate_basic_info'] = 'Basic Information';
 
 # Plots
 $lang['realestate_plot'] = 'Plot';

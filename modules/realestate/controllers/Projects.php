@@ -33,6 +33,11 @@ class Projects extends AdminController
         if ($this->input->post()) {
             $data = $this->input->post();
             
+            // Calculate total_sqft from total_acres if provided
+            if (isset($data['total_acres']) && !empty($data['total_acres'])) {
+                $data['total_sqft'] = $data['total_acres'] * 43560; // 1 acre = 43,560 sq ft
+            }
+            
             if ($id == '') {
                 if (!has_permission('realestate', '', 'create')) {
                     access_denied('realestate');
@@ -61,8 +66,24 @@ class Projects extends AdminController
             $title = _l('realestate_edit_project');
         }
 
+        // Get staff for project manager
+        $this->load->model('staff_model');
+        $data['staff'] = $this->staff_model->get();
+        
         $data['title'] = $title;
         $this->load->view('projects/project', $data);
+    }
+
+    /**
+     * Generate project code via AJAX
+     */
+    public function generate_code()
+    {
+        $short_name = $this->input->post('short_name');
+        $project_code = $this->projects_model->generate_project_code($short_name);
+        
+        header('Content-Type: application/json');
+        echo json_encode(['project_code' => $project_code]);
     }
 
     /**
