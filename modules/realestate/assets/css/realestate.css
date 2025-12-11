@@ -1,0 +1,210 @@
+/* Real Estate Module Styles */
+
+/* Dashboard Stats */
+.realestate-stats {
+    margin-bottom: 20px;
+}
+
+.realestate-stat-box {
+    padding: 20px;
+    text-align: center;
+    background: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.realestate-stat-box:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.realestate-stat-box h3 {
+    margin: 0 0 10px 0;
+    font-size: 32px;
+    font-weight: bold;
+    color: #2196F3;
+}
+
+.realestate-stat-box p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Table Styles */
+.table-projects tbody tr:hover,
+.table-plots tbody tr:hover,
+.table-bookings tbody tr:hover,
+.table-transactions tbody tr:hover,
+.table-team tbody tr:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+/* Labels and Badges */
+.label {
+    padding: 4px 8px;
+    border-radius: 3px;
+}
+
+.label-success {
+    background-color: #4CAF50;
+}
+
+.label-warning {
+    background-color: #FF9800;
+}
+
+.label-danger {
+    background-color: #F44336;
+}
+
+.label-info {
+    background-color: #2196F3;
+}
+
+/* Buttons */
+.btn-bottom-toolbar {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Settings Navigation */
+.nav-stacked {
+    margin-bottom: 20px;
+}
+
+.nav-stacked li a {
+    padding: 12px 15px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.nav-stacked li a:hover {
+    background-color: #f5f5f5;
+    text-decoration: none;
+}
+
+.nav-stacked li.active a {
+    background-color: #2196F3;
+    color: #fff;
+}
+
+.nav-stacked li a i {
+    margin-right: 8px;
+    width: 20px;
+    text-align: center;
+}
+
+/* Theme Customization */
+input[type="color"] {
+    height: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Notification Settings */
+.checkbox-primary input[type="checkbox"]:checked + label::before {
+    background-color: #2196F3;
+    border-color: #2196F3;
+}
+
+/* Plot Map Visualization */
+.plot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    padding: 20px;
+}
+
+.plot-item {
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.plot-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.plot-item.status-available {
+    background-color: #E8F5E9;
+    border-color: #4CAF50;
+}
+
+.plot-item.status-reserved {
+    background-color: #FFF9C4;
+    border-color: #FFC107;
+}
+
+.plot-item.status-booked {
+    background-color: #E3F2FD;
+    border-color: #2196F3;
+}
+
+.plot-item.status-sold {
+    background-color: #FFEBEE;
+    border-color: #F44336;
+}
+
+.plot-item .plot-number {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.plot-item .plot-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.badge-corner {
+    background-color: #FF9800;
+    color: #fff;
+}
+
+.badge-main-road {
+    background-color: #9C27B0;
+    color: #fff;
+}
+
+/* Analytics Charts */
+.chart-container {
+    position: relative;
+    height: 300px;
+    margin-bottom: 30px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .realestate-stat-box h3 {
+        font-size: 24px;
+    }
+    
+    .plot-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 5px;
+        padding: 10px;
+    }
+    
+    .plot-item {
+        padding: 10px;
+        min-height: 80px;
+    }
+}
