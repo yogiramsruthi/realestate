@@ -11,7 +11,31 @@
                                 <a href="<?php echo admin_url('realestate/plots/plot'); ?>" class="btn btn-info pull-left">
                                     <i class="fa fa-plus"></i> <?php echo _l('realestate_add_plot'); ?>
                                 </a>
+                                <a href="<?php echo admin_url('realestate/plots/bulk_create'); ?>" class="btn btn-success pull-left mleft10">
+                                    <i class="fa fa-clone"></i> <?php echo _l('realestate_bulk_create_plots'); ?>
+                                </a>
                             <?php } ?>
+                            <?php if (has_permission('realestate', '', 'edit')) { ?>
+                                <a href="<?php echo admin_url('realestate/plots/bulk_update'); ?>" class="btn btn-warning pull-left mleft10">
+                                    <i class="fa fa-edit"></i> <?php echo _l('realestate_bulk_update_plots'); ?>
+                                </a>
+                            <?php } ?>
+                            <a href="<?php echo admin_url('realestate/plots/compare'); ?>" class="btn btn-primary pull-left mleft10">
+                                <i class="fa fa-exchange"></i> <?php echo _l('realestate_compare_plots'); ?>
+                            </a>
+                            <a href="<?php echo admin_url('realestate/plots/analytics'); ?>" class="btn btn-default pull-left mleft10">
+                                <i class="fa fa-bar-chart"></i> <?php echo _l('realestate_analytics'); ?>
+                            </a>
+                            <div class="btn-group pull-left mleft10">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-map"></i> <?php echo _l('realestate_plot_map'); ?> <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <?php foreach ($projects as $project) { ?>
+                                        <li><a href="<?php echo admin_url('realestate/plots/plot_map/' . $project['id']); ?>"><?php echo $project['name']; ?></a></li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
                         </div>
                         <div class="clearfix"></div>
                         <hr class="hr-panel-heading" />
