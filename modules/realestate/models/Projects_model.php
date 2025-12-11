@@ -39,11 +39,11 @@ class Projects_model extends App_Model
      */
     public function generate_project_code($project_short_name = '')
     {
-        $year = date('Y');
+        $year = intval(date('Y')); // Ensure year is an integer for security
         
         // Get the last project code for this year with precise matching
         $this->db->select('project_code');
-        $this->db->where("project_code REGEXP", "^[A-Z]+-{$year}-[0-9]+$");
+        $this->db->where("project_code REGEXP", $this->db->escape("^[A-Z]+-{$year}-[0-9]+$"));
         $this->db->order_by('id', 'desc');
         $this->db->limit(1);
         $last_project = $this->db->get(db_prefix() . 'realestate_projects')->row();
@@ -52,7 +52,7 @@ class Projects_model extends App_Model
         if ($last_project && $last_project->project_code) {
             // Extract serial number from last project code
             $parts = explode('-', $last_project->project_code);
-            if (count($parts) == 3 && $parts[1] == $year) {
+            if (count($parts) == 3 && intval($parts[1]) == $year) {
                 $serial_number = intval($parts[2]) + 1;
             }
         }
@@ -61,6 +61,9 @@ class Projects_model extends App_Model
         if (empty($project_short_name)) {
             $project_short_name = 'PRJ';
         }
+        
+        // Sanitize short name to allow only alphanumeric characters
+        $project_short_name = preg_replace('/[^A-Za-z0-9]/', '', $project_short_name);
         
         // Generate code: SHORTNAME-YEAR-SERIALNUMBER
         $project_code = strtoupper($project_short_name) . '-' . $year . '-' . str_pad($serial_number, 5, '0', STR_PAD_LEFT);
