@@ -78,6 +78,64 @@ $lang['realestate_other_approvals'] = 'Other Approvals';
 # Basic Info
 $lang['realestate_basic_info'] = 'Basic Information';
 
+# Owner Details
+$lang['realestate_owner_details'] = 'Owner Details';
+$lang['realestate_add_owner'] = 'Add Owner';
+$lang['realestate_edit_owner'] = 'Edit Owner';
+$lang['realestate_owner_name'] = 'Owner Name';
+$lang['realestate_owner_type'] = 'Owner Type';
+$lang['realestate_contact_number'] = 'Contact Number';
+$lang['realestate_email'] = 'Email';
+$lang['realestate_address'] = 'Address';
+$lang['realestate_aadhar_number'] = 'Aadhar Number';
+$lang['realestate_pan_number'] = 'PAN Number';
+$lang['realestate_ownership_percentage'] = 'Ownership %';
+$lang['realestate_owner_added'] = 'Owner added successfully';
+$lang['realestate_owner_updated'] = 'Owner updated successfully';
+$lang['realestate_owner_deleted'] = 'Owner deleted successfully';
+
+# Owner Types
+$lang['realestate_owner_type_individual'] = 'Individual';
+$lang['realestate_owner_type_company'] = 'Company';
+$lang['realestate_owner_type_partnership'] = 'Partnership';
+$lang['realestate_owner_type_trust'] = 'Trust';
+
+# Patta Details
+$lang['realestate_patta_details'] = 'Patta Details';
+$lang['realestate_add_patta'] = 'Add Patta';
+$lang['realestate_edit_patta'] = 'Edit Patta';
+$lang['realestate_patta_number'] = 'Patta Number';
+$lang['realestate_survey_number'] = 'Survey Number';
+$lang['realestate_subdivision_number'] = 'Subdivision Number';
+$lang['realestate_patta_holder_name'] = 'Patta Holder Name';
+$lang['realestate_extent'] = 'Extent';
+$lang['realestate_classification'] = 'Classification';
+$lang['realestate_remarks'] = 'Remarks';
+$lang['realestate_patta_added'] = 'Patta detail added successfully';
+$lang['realestate_patta_updated'] = 'Patta detail updated successfully';
+$lang['realestate_patta_deleted'] = 'Patta detail deleted successfully';
+
+# Documents
+$lang['realestate_documents'] = 'Documents';
+$lang['realestate_upload_document'] = 'Upload Document';
+$lang['realestate_document_name'] = 'Document Name';
+$lang['realestate_document_type'] = 'Document Type';
+$lang['realestate_file'] = 'File';
+$lang['realestate_description'] = 'Description';
+$lang['realestate_uploaded_date'] = 'Uploaded Date';
+$lang['realestate_document_uploaded'] = 'Document uploaded successfully';
+$lang['realestate_document_deleted'] = 'Document deleted successfully';
+$lang['realestate_download'] = 'Download';
+
+# Document Types
+$lang['realestate_doc_parent_document'] = 'Parent Document';
+$lang['realestate_doc_current_document'] = 'Current Document';
+$lang['realestate_doc_layout_sketch'] = 'Layout Sketch';
+$lang['realestate_doc_patta'] = 'Patta';
+$lang['realestate_doc_sale_deed'] = 'Sale Deed';
+$lang['realestate_doc_encumbrance'] = 'Encumbrance Certificate';
+$lang['realestate_doc_other'] = 'Other';
+
 # Plots
 $lang['realestate_plot'] = 'Plot';
 $lang['realestate_add_plot'] = 'Add Plot';

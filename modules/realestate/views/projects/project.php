@@ -224,12 +224,371 @@
                             <a href="<?php echo admin_url('realestate/projects'); ?>" class="btn btn-default"><?php echo _l('realestate_cancel'); ?></a>
                         </div>
                         <?php echo form_close(); ?>
+                        
+                        <?php if (!empty($project_id) && $project_id != '') { ?>
+                        <!-- Additional Information Tabs -->
+                        <hr class="mtop30" />
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#owners_tab" aria-controls="owners_tab" role="tab" data-toggle="tab">
+                                    <i class="fa fa-users"></i> <?php echo _l('realestate_owner_details'); ?>
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#patta_tab" aria-controls="patta_tab" role="tab" data-toggle="tab">
+                                    <i class="fa fa-file-text-o"></i> <?php echo _l('realestate_patta_details'); ?>
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#documents_tab" aria-controls="documents_tab" role="tab" data-toggle="tab">
+                                    <i class="fa fa-folder-open"></i> <?php echo _l('realestate_documents'); ?>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <div class="tab-content mtop20">
+                            <!-- Owners Tab -->
+                            <div role="tabpanel" class="tab-pane active" id="owners_tab">
+                                <button type="button" class="btn btn-primary btn-sm pull-right" onclick="addOwner()">
+                                    <i class="fa fa-plus"></i> <?php echo _l('realestate_add_owner'); ?>
+                                </button>
+                                <div class="clearfix"></div>
+                                <table class="table table-bordered mtop15">
+                                    <thead>
+                                        <tr>
+                                            <th><?php echo _l('realestate_owner_name'); ?></th>
+                                            <th><?php echo _l('realestate_owner_type'); ?></th>
+                                            <th><?php echo _l('realestate_contact_number'); ?></th>
+                                            <th><?php echo _l('realestate_ownership_percentage'); ?></th>
+                                            <th><?php echo _l('realestate_actions'); ?></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (!empty($owners)) { ?>
+                                            <?php foreach ($owners as $owner) { ?>
+                                                <tr>
+                                                    <td><?php echo $owner['owner_name']; ?></td>
+                                                    <td><?php echo $owner['owner_type']; ?></td>
+                                                    <td><?php echo $owner['contact_number']; ?></td>
+                                                    <td><?php echo $owner['ownership_percentage']; ?>%</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-default btn-icon btn-sm" onclick="editOwner(<?php echo $owner['id']; ?>)">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-icon btn-sm" onclick="deleteOwner(<?php echo $owner['id']; ?>)">
+                                                            <i class="fa fa-remove"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        <?php } else { ?>
+                                            <tr>
+                                                <td colspan="5" class="text-center"><?php echo _l('realestate_no_records'); ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- Patta Tab -->
+                            <div role="tabpanel" class="tab-pane" id="patta_tab">
+                                <button type="button" class="btn btn-primary btn-sm pull-right" onclick="addPatta()">
+                                    <i class="fa fa-plus"></i> <?php echo _l('realestate_add_patta'); ?>
+                                </button>
+                                <div class="clearfix"></div>
+                                <table class="table table-bordered mtop15">
+                                    <thead>
+                                        <tr>
+                                            <th><?php echo _l('realestate_patta_number'); ?></th>
+                                            <th><?php echo _l('realestate_survey_number'); ?></th>
+                                            <th><?php echo _l('realestate_patta_holder_name'); ?></th>
+                                            <th><?php echo _l('realestate_extent'); ?></th>
+                                            <th><?php echo _l('realestate_actions'); ?></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (!empty($patta_details)) { ?>
+                                            <?php foreach ($patta_details as $patta) { ?>
+                                                <tr>
+                                                    <td><?php echo $patta['patta_number']; ?></td>
+                                                    <td><?php echo $patta['survey_number']; ?></td>
+                                                    <td><?php echo $patta['patta_holder_name']; ?></td>
+                                                    <td><?php echo $patta['extent']; ?></td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-default btn-icon btn-sm" onclick="editPatta(<?php echo $patta['id']; ?>)">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-icon btn-sm" onclick="deletePatta(<?php echo $patta['id']; ?>)">
+                                                            <i class="fa fa-remove"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        <?php } else { ?>
+                                            <tr>
+                                                <td colspan="5" class="text-center"><?php echo _l('realestate_no_records'); ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- Documents Tab -->
+                            <div role="tabpanel" class="tab-pane" id="documents_tab">
+                                <button type="button" class="btn btn-primary btn-sm pull-right" onclick="$('#upload_document_modal').modal('show')">
+                                    <i class="fa fa-upload"></i> <?php echo _l('realestate_upload_document'); ?>
+                                </button>
+                                <div class="clearfix"></div>
+                                <table class="table table-bordered mtop15">
+                                    <thead>
+                                        <tr>
+                                            <th><?php echo _l('realestate_document_type'); ?></th>
+                                            <th><?php echo _l('realestate_document_name'); ?></th>
+                                            <th><?php echo _l('realestate_uploaded_date'); ?></th>
+                                            <th><?php echo _l('realestate_actions'); ?></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (!empty($documents)) { ?>
+                                            <?php foreach ($documents as $doc) { ?>
+                                                <tr>
+                                                    <td><?php echo $doc['document_type']; ?></td>
+                                                    <td><?php echo $doc['document_name']; ?></td>
+                                                    <td><?php echo _dt($doc['date_uploaded']); ?></td>
+                                                    <td>
+                                                        <a href="<?php echo admin_url('realestate/projects/download_document/' . $doc['id']); ?>" class="btn btn-default btn-icon btn-sm">
+                                                            <i class="fa fa-download"></i>
+                                                        </a>
+                                                        <a href="<?php echo admin_url('realestate/projects/delete_document/' . $doc['id'] . '/' . $project_id); ?>" class="btn btn-danger btn-icon btn-sm _delete">
+                                                            <i class="fa fa-remove"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        <?php } else { ?>
+                                            <tr>
+                                                <td colspan="4" class="text-center"><?php echo _l('realestate_no_records'); ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Upload Document Modal -->
+<div class="modal fade" id="upload_document_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title"><?php echo _l('realestate_upload_document'); ?></h4>
+            </div>
+            <?php echo form_open_multipart(admin_url('realestate/projects/upload_document')); ?>
+            <div class="modal-body">
+                <input type="hidden" name="project_id" value="<?php echo isset($project_id) ? $project_id : ''; ?>">
+                
+                <div class="form-group">
+                    <label for="document_type"><?php echo _l('realestate_document_type'); ?> *</label>
+                    <select name="document_type" class="form-control selectpicker" required>
+                        <option value=""><?php echo _l('realestate_select_project'); ?></option>
+                        <option value="parent_document"><?php echo _l('realestate_doc_parent_document'); ?></option>
+                        <option value="current_document"><?php echo _l('realestate_doc_current_document'); ?></option>
+                        <option value="layout_sketch"><?php echo _l('realestate_doc_layout_sketch'); ?></option>
+                        <option value="patta"><?php echo _l('realestate_doc_patta'); ?></option>
+                        <option value="sale_deed"><?php echo _l('realestate_doc_sale_deed'); ?></option>
+                        <option value="encumbrance"><?php echo _l('realestate_doc_encumbrance'); ?></option>
+                        <option value="other"><?php echo _l('realestate_doc_other'); ?></option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="document_name"><?php echo _l('realestate_document_name'); ?> *</label>
+                    <input type="text" name="document_name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="file"><?php echo _l('realestate_file'); ?> *</label>
+                    <input type="file" name="file" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description"><?php echo _l('realestate_description'); ?></label>
+                    <textarea name="description" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _l('realestate_cancel'); ?></button>
+                <button type="submit" class="btn btn-info"><?php echo _l('realestate_upload_document'); ?></button>
+            </div>
+            <?php echo form_close(); ?>
+        </div>
+    </div>
+</div>
+
+<!-- Owner Modal -->
+<div class="modal fade" id="owner_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="owner_modal_title"><?php echo _l('realestate_add_owner'); ?></h4>
+            </div>
+            <form id="owner_form">
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="owner_id">
+                    <input type="hidden" name="project_id" value="<?php echo isset($project_id) ? $project_id : ''; ?>">
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="owner_name"><?php echo _l('realestate_owner_name'); ?> *</label>
+                                <input type="text" name="owner_name" id="owner_name" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="owner_type"><?php echo _l('realestate_owner_type'); ?></label>
+                                <select name="owner_type" id="owner_type" class="form-control selectpicker">
+                                    <option value="individual"><?php echo _l('realestate_owner_type_individual'); ?></option>
+                                    <option value="company"><?php echo _l('realestate_owner_type_company'); ?></option>
+                                    <option value="partnership"><?php echo _l('realestate_owner_type_partnership'); ?></option>
+                                    <option value="trust"><?php echo _l('realestate_owner_type_trust'); ?></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="contact_number"><?php echo _l('realestate_contact_number'); ?></label>
+                                <input type="text" name="contact_number" id="contact_number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email"><?php echo _l('realestate_email'); ?></label>
+                                <input type="email" name="email" id="email" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="aadhar_number"><?php echo _l('realestate_aadhar_number'); ?></label>
+                                <input type="text" name="aadhar_number" id="aadhar_number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="pan_number"><?php echo _l('realestate_pan_number'); ?></label>
+                                <input type="text" name="pan_number" id="pan_number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="ownership_percentage"><?php echo _l('realestate_ownership_percentage'); ?></label>
+                                <input type="number" name="ownership_percentage" id="ownership_percentage" class="form-control" step="0.01" min="0" max="100">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address"><?php echo _l('realestate_address'); ?></label>
+                        <textarea name="address" id="address" class="form-control" rows="2"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="owner_notes"><?php echo _l('realestate_notes'); ?></label>
+                        <textarea name="notes" id="owner_notes" class="form-control" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _l('realestate_cancel'); ?></button>
+                    <button type="submit" class="btn btn-info"><?php echo _l('realestate_save'); ?></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Patta Modal -->
+<div class="modal fade" id="patta_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="patta_modal_title"><?php echo _l('realestate_add_patta'); ?></h4>
+            </div>
+            <form id="patta_form">
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="patta_id">
+                    <input type="hidden" name="project_id" value="<?php echo isset($project_id) ? $project_id : ''; ?>">
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="patta_number"><?php echo _l('realestate_patta_number'); ?></label>
+                                <input type="text" name="patta_number" id="patta_number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="survey_number"><?php echo _l('realestate_survey_number'); ?></label>
+                                <input type="text" name="survey_number" id="survey_number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="subdivision_number"><?php echo _l('realestate_subdivision_number'); ?></label>
+                                <input type="text" name="subdivision_number" id="subdivision_number" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="patta_holder_name"><?php echo _l('realestate_patta_holder_name'); ?></label>
+                                <input type="text" name="patta_holder_name" id="patta_holder_name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="extent"><?php echo _l('realestate_extent'); ?></label>
+                                <input type="text" name="extent" id="extent" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="classification"><?php echo _l('realestate_classification'); ?></label>
+                                <input type="text" name="classification" id="classification" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="patta_remarks"><?php echo _l('realestate_remarks'); ?></label>
+                        <textarea name="remarks" id="patta_remarks" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _l('realestate_cancel'); ?></button>
+                    <button type="submit" class="btn btn-info"><?php echo _l('realestate_save'); ?></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <?php init_tail(); ?>
 <script>
 // Constants
@@ -270,6 +629,112 @@ function calculateTotalSqft() {
     var totalSqft = totalAcres * SQFT_PER_ACRE;
     $('#total_sqft').val(totalSqft.toFixed(2));
 }
+
+// Owner Management Functions
+function addOwner() {
+    $('#owner_id').val('');
+    $('#owner_form')[0].reset();
+    $('#owner_modal_title').text('<?php echo _l('realestate_add_owner'); ?>');
+    $('#owner_modal').modal('show');
+}
+
+function editOwner(id) {
+    // Fetch owner data and populate form
+    $.get('<?php echo admin_url('realestate/projects/get_owner/'); ?>' + id, function(data) {
+        if (data) {
+            $('#owner_id').val(data.id);
+            $('#owner_name').val(data.owner_name);
+            $('#owner_type').val(data.owner_type).selectpicker('refresh');
+            $('#contact_number').val(data.contact_number);
+            $('#email').val(data.email);
+            $('#aadhar_number').val(data.aadhar_number);
+            $('#pan_number').val(data.pan_number);
+            $('#ownership_percentage').val(data.ownership_percentage);
+            $('#address').val(data.address);
+            $('#owner_notes').val(data.notes);
+            $('#owner_modal_title').text('<?php echo _l('realestate_edit_owner'); ?>');
+            $('#owner_modal').modal('show');
+        }
+    });
+}
+
+function deleteOwner(id) {
+    if (confirm('Are you sure you want to delete this owner?')) {
+        $.get('<?php echo admin_url('realestate/projects/delete_owner/'); ?>' + id, function(response) {
+            if (response.success) {
+                alert_float('success', response.message);
+                location.reload();
+            } else {
+                alert_float('danger', response.message);
+            }
+        });
+    }
+}
+
+$('#owner_form').on('submit', function(e) {
+    e.preventDefault();
+    $.post('<?php echo admin_url('realestate/projects/save_owner'); ?>', $(this).serialize(), function(response) {
+        if (response.success) {
+            alert_float('success', response.message);
+            $('#owner_modal').modal('hide');
+            location.reload();
+        } else {
+            alert_float('danger', response.message);
+        }
+    });
+});
+
+// Patta Management Functions
+function addPatta() {
+    $('#patta_id').val('');
+    $('#patta_form')[0].reset();
+    $('#patta_modal_title').text('<?php echo _l('realestate_add_patta'); ?>');
+    $('#patta_modal').modal('show');
+}
+
+function editPatta(id) {
+    // Fetch patta data and populate form
+    $.get('<?php echo admin_url('realestate/projects/get_patta/'); ?>' + id, function(data) {
+        if (data) {
+            $('#patta_id').val(data.id);
+            $('#patta_number').val(data.patta_number);
+            $('#survey_number').val(data.survey_number);
+            $('#subdivision_number').val(data.subdivision_number);
+            $('#patta_holder_name').val(data.patta_holder_name);
+            $('#extent').val(data.extent);
+            $('#classification').val(data.classification);
+            $('#patta_remarks').val(data.remarks);
+            $('#patta_modal_title').text('<?php echo _l('realestate_edit_patta'); ?>');
+            $('#patta_modal').modal('show');
+        }
+    });
+}
+
+function deletePatta(id) {
+    if (confirm('Are you sure you want to delete this patta detail?')) {
+        $.get('<?php echo admin_url('realestate/projects/delete_patta/'); ?>' + id, function(response) {
+            if (response.success) {
+                alert_float('success', response.message);
+                location.reload();
+            } else {
+                alert_float('danger', response.message);
+            }
+        });
+    }
+}
+
+$('#patta_form').on('submit', function(e) {
+    e.preventDefault();
+    $.post('<?php echo admin_url('realestate/projects/save_patta'); ?>', $(this).serialize(), function(response) {
+        if (response.success) {
+            alert_float('success', response.message);
+            $('#patta_modal').modal('hide');
+            location.reload();
+        } else {
+            alert_float('danger', response.message);
+        }
+    });
+});
 </script>
 </body>
 </html>

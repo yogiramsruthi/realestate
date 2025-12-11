@@ -123,3 +123,60 @@ if (!$CI->db->table_exists(db_prefix() . 'realestate_team_assignments')) {
         KEY `project_id` (`project_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
 }
+
+if (!$CI->db->table_exists(db_prefix() . 'realestate_owners')) {
+    $CI->db->query('CREATE TABLE `' . db_prefix() . "realestate_owners` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `project_id` int(11) NOT NULL,
+        `owner_name` varchar(255) NOT NULL,
+        `owner_type` varchar(50) DEFAULT NULL,
+        `contact_number` varchar(20) DEFAULT NULL,
+        `email` varchar(255) DEFAULT NULL,
+        `address` text DEFAULT NULL,
+        `aadhar_number` varchar(20) DEFAULT NULL,
+        `pan_number` varchar(20) DEFAULT NULL,
+        `ownership_percentage` decimal(5,2) DEFAULT 0.00,
+        `notes` text DEFAULT NULL,
+        `created_by` int(11) NOT NULL,
+        `date_created` datetime NOT NULL,
+        `last_updated` datetime DEFAULT NULL,
+        PRIMARY KEY (`id`),
+        KEY `project_id` (`project_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
+}
+
+if (!$CI->db->table_exists(db_prefix() . 'realestate_patta_details')) {
+    $CI->db->query('CREATE TABLE `' . db_prefix() . "realestate_patta_details` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `project_id` int(11) NOT NULL,
+        `patta_number` varchar(100) DEFAULT NULL,
+        `survey_number` varchar(100) DEFAULT NULL,
+        `subdivision_number` varchar(100) DEFAULT NULL,
+        `patta_holder_name` varchar(255) DEFAULT NULL,
+        `extent` varchar(100) DEFAULT NULL,
+        `classification` varchar(100) DEFAULT NULL,
+        `remarks` text DEFAULT NULL,
+        `created_by` int(11) NOT NULL,
+        `date_created` datetime NOT NULL,
+        `last_updated` datetime DEFAULT NULL,
+        PRIMARY KEY (`id`),
+        KEY `project_id` (`project_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
+}
+
+if (!$CI->db->table_exists(db_prefix() . 'realestate_documents')) {
+    $CI->db->query('CREATE TABLE `' . db_prefix() . "realestate_documents` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `project_id` int(11) NOT NULL,
+        `document_type` varchar(100) NOT NULL,
+        `document_name` varchar(255) NOT NULL,
+        `file_name` varchar(255) NOT NULL,
+        `file_path` text NOT NULL,
+        `file_size` int(11) DEFAULT NULL,
+        `uploaded_by` int(11) NOT NULL,
+        `date_uploaded` datetime NOT NULL,
+        `description` text DEFAULT NULL,
+        PRIMARY KEY (`id`),
+        KEY `project_id` (`project_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
+}
