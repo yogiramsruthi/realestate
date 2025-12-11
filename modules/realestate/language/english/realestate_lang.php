@@ -136,6 +136,93 @@ $lang['realestate_doc_sale_deed'] = 'Sale Deed';
 $lang['realestate_doc_encumbrance'] = 'Encumbrance Certificate';
 $lang['realestate_doc_other'] = 'Other';
 
+# Plot Advanced Features
+$lang['realestate_corner_plot'] = 'Corner Plot';
+$lang['realestate_main_road_facing'] = 'Main Road Facing';
+$lang['realestate_road_width'] = 'Road Width';
+$lang['realestate_soil_type'] = 'Soil Type';
+$lang['realestate_elevation'] = 'Elevation';
+$lang['realestate_drainage'] = 'Drainage';
+$lang['realestate_water_connection'] = 'Water Connection';
+$lang['realestate_electricity_connection'] = 'Electricity Connection';
+$lang['realestate_sewage_connection'] = 'Sewage Connection';
+$lang['realestate_road_access'] = 'Road Access';
+$lang['realestate_nearby_amenities'] = 'Nearby Amenities';
+$lang['realestate_plot_category'] = 'Plot Category';
+$lang['realestate_latitude'] = 'Latitude';
+$lang['realestate_longitude'] = 'Longitude';
+$lang['realestate_corner_coordinates'] = 'Corner Coordinates';
+$lang['realestate_plot_map_image'] = 'Plot Map Image';
+$lang['realestate_reservation_expiry'] = 'Reservation Expiry';
+$lang['realestate_token_amount'] = 'Token Amount';
+$lang['realestate_discount_percentage'] = 'Discount %';
+$lang['realestate_discount_amount'] = 'Discount Amount';
+$lang['realestate_final_price'] = 'Final Price';
+$lang['realestate_price_per_sqft'] = 'Price per Sq.ft';
+
+# Plot Categories
+$lang['realestate_category_premium'] = 'Premium';
+$lang['realestate_category_standard'] = 'Standard';
+$lang['realestate_category_economy'] = 'Economy';
+
+# Plot Features
+$lang['realestate_plot_specifications'] = 'Plot Specifications';
+$lang['realestate_utility_connections'] = 'Utility Connections';
+$lang['realestate_location_features'] = 'Location Features';
+$lang['realestate_pricing_discount'] = 'Pricing & Discount';
+$lang['realestate_price_history'] = 'Price History';
+$lang['realestate_waiting_list'] = 'Waiting List';
+$lang['realestate_plot_map'] = 'Plot Map';
+$lang['realestate_bulk_operations'] = 'Bulk Operations';
+$lang['realestate_compare_plots'] = 'Compare Plots';
+$lang['realestate_analytics'] = 'Analytics';
+
+# Bulk Operations
+$lang['realestate_bulk_create_plots'] = 'Bulk Create Plots';
+$lang['realestate_bulk_update_plots'] = 'Bulk Update Plots';
+$lang['realestate_plot_prefix'] = 'Plot Prefix';
+$lang['realestate_start_number'] = 'Start Number';
+$lang['realestate_number_of_plots'] = 'Number of Plots';
+$lang['realestate_default_settings'] = 'Default Settings';
+$lang['realestate_plots_created'] = 'Plots created successfully';
+$lang['realestate_plots_updated'] = 'Plots updated successfully';
+
+# Price History
+$lang['realestate_old_price'] = 'Old Price';
+$lang['realestate_new_price'] = 'New Price';
+$lang['realestate_changed_by'] = 'Changed By';
+$lang['realestate_change_date'] = 'Change Date';
+
+# Waiting List
+$lang['realestate_add_to_waiting_list'] = 'Add to Waiting List';
+$lang['realestate_priority'] = 'Priority';
+$lang['realestate_customer'] = 'Customer';
+
+# Road Access Types
+$lang['realestate_road_main'] = 'Main Road';
+$lang['realestate_road_internal'] = 'Internal Road';
+$lang['realestate_road_corner'] = 'Corner';
+
+# Analytics
+$lang['realestate_sales_velocity'] = 'Sales Velocity';
+$lang['realestate_revenue_forecast'] = 'Revenue Forecast';
+$lang['realestate_availability_dashboard'] = 'Availability Dashboard';
+$lang['realestate_price_trends'] = 'Price Trends';
+$lang['realestate_by_status'] = 'By Status';
+$lang['realestate_by_category'] = 'By Category';
+$lang['realestate_price_statistics'] = 'Price Statistics';
+$lang['realestate_average_price'] = 'Average Price';
+$lang['realestate_min_price'] = 'Minimum Price';
+$lang['realestate_max_price'] = 'Maximum Price';
+$lang['realestate_sold_last_30_days'] = 'Sold (Last 30 Days)';
+
+# Filters
+$lang['realestate_filter_by_price'] = 'Filter by Price';
+$lang['realestate_filter_by_category'] = 'Filter by Category';
+$lang['realestate_filter_by_status'] = 'Filter by Status';
+$lang['realestate_apply_filter'] = 'Apply Filter';
+$lang['realestate_clear_filter'] = 'Clear Filter';
+
 # Plots
 $lang['realestate_plot'] = 'Plot';
 $lang['realestate_add_plot'] = 'Add Plot';

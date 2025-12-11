@@ -55,15 +55,68 @@ if (!$CI->db->table_exists(db_prefix() . 'realestate_plots')) {
         `plot_size` varchar(100) DEFAULT NULL,
         `plot_type` varchar(100) DEFAULT NULL,
         `price` decimal(15,2) DEFAULT 0.00,
+        `price_per_sqft` decimal(15,2) DEFAULT 0.00,
         `status` varchar(50) DEFAULT 'available',
         `dimension` varchar(100) DEFAULT NULL,
         `facing` varchar(50) DEFAULT NULL,
         `description` text DEFAULT NULL,
+        `corner_plot` tinyint(1) DEFAULT 0,
+        `main_road_facing` tinyint(1) DEFAULT 0,
+        `road_width` varchar(50) DEFAULT NULL,
+        `soil_type` varchar(100) DEFAULT NULL,
+        `elevation` varchar(100) DEFAULT NULL,
+        `drainage` varchar(100) DEFAULT NULL,
+        `water_connection` tinyint(1) DEFAULT 0,
+        `electricity_connection` tinyint(1) DEFAULT 0,
+        `sewage_connection` tinyint(1) DEFAULT 0,
+        `road_access` varchar(50) DEFAULT NULL,
+        `nearby_amenities` text DEFAULT NULL,
+        `plot_category` varchar(50) DEFAULT 'standard',
+        `latitude` varchar(50) DEFAULT NULL,
+        `longitude` varchar(50) DEFAULT NULL,
+        `corner_coordinates` text DEFAULT NULL,
+        `plot_map_image` varchar(255) DEFAULT NULL,
+        `reservation_expiry` datetime DEFAULT NULL,
+        `token_amount` decimal(15,2) DEFAULT 0.00,
+        `discount_percentage` decimal(5,2) DEFAULT 0.00,
+        `discount_amount` decimal(15,2) DEFAULT 0.00,
+        `final_price` decimal(15,2) DEFAULT 0.00,
         `created_by` int(11) NOT NULL,
         `date_created` datetime NOT NULL,
         `last_updated` datetime DEFAULT NULL,
         PRIMARY KEY (`id`),
-        KEY `project_id` (`project_id`)
+        KEY `project_id` (`project_id`),
+        KEY `status` (`status`),
+        KEY `plot_category` (`plot_category`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
+}
+
+if (!$CI->db->table_exists(db_prefix() . 'realestate_plot_price_history')) {
+    $CI->db->query('CREATE TABLE `' . db_prefix() . "realestate_plot_price_history` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `plot_id` int(11) NOT NULL,
+        `old_price` decimal(15,2) NOT NULL,
+        `new_price` decimal(15,2) NOT NULL,
+        `changed_by` int(11) NOT NULL,
+        `change_date` datetime NOT NULL,
+        `notes` text DEFAULT NULL,
+        PRIMARY KEY (`id`),
+        KEY `plot_id` (`plot_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
+}
+
+if (!$CI->db->table_exists(db_prefix() . 'realestate_plot_waiting_list')) {
+    $CI->db->query('CREATE TABLE `' . db_prefix() . "realestate_plot_waiting_list` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `plot_id` int(11) NOT NULL,
+        `customer_id` int(11) NOT NULL,
+        `priority` int(11) DEFAULT 1,
+        `added_date` datetime NOT NULL,
+        `status` varchar(50) DEFAULT 'active',
+        `notes` text DEFAULT NULL,
+        PRIMARY KEY (`id`),
+        KEY `plot_id` (`plot_id`),
+        KEY `customer_id` (`customer_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
 }
 
