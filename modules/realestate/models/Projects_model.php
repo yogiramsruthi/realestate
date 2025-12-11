@@ -41,9 +41,9 @@ class Projects_model extends App_Model
     {
         $year = date('Y');
         
-        // Get the last project code for this year
+        // Get the last project code for this year with precise matching
         $this->db->select('project_code');
-        $this->db->like('project_code', '-' . $year . '-', 'both');
+        $this->db->where("project_code REGEXP", "^[A-Z]+-{$year}-[0-9]+$");
         $this->db->order_by('id', 'desc');
         $this->db->limit(1);
         $last_project = $this->db->get(db_prefix() . 'realestate_projects')->row();
@@ -52,7 +52,7 @@ class Projects_model extends App_Model
         if ($last_project && $last_project->project_code) {
             // Extract serial number from last project code
             $parts = explode('-', $last_project->project_code);
-            if (count($parts) == 3) {
+            if (count($parts) == 3 && $parts[1] == $year) {
                 $serial_number = intval($parts[2]) + 1;
             }
         }

@@ -232,10 +232,13 @@
 </div>
 <?php init_tail(); ?>
 <script>
+// Constants
+const SQFT_PER_ACRE = 43560;
+
 function generateProjectCode() {
     var projectName = $('input[name="name"]').val();
     if (!projectName) {
-        alert('Please enter project name first');
+        alert_float('warning', '<?php echo _l('realestate_project_name'); ?> is required');
         return;
     }
     
@@ -244,17 +247,27 @@ function generateProjectCode() {
     if (!shortName) return;
     
     $('#project_short_name').val(shortName);
+    $('#generate_code_btn').prop('disabled', true).html('<i class="fa fa-spinner fa-spin"></i> Generating...');
     
     $.post('<?php echo admin_url('realestate/projects/generate_code'); ?>', {
         short_name: shortName
     }, function(response) {
-        $('input[name="project_code"]').val(response.project_code);
+        if (response.success) {
+            $('input[name="project_code"]').val(response.project_code);
+            alert_float('success', 'Project code generated successfully');
+        } else {
+            alert_float('danger', response.message || 'Failed to generate project code');
+        }
+    }).fail(function() {
+        alert_float('danger', 'Failed to generate project code');
+    }).always(function() {
+        $('#generate_code_btn').prop('disabled', false).html('<i class="fa fa-refresh"></i> <?php echo _l('realestate_generate_code'); ?>');
     });
 }
 
 function calculateTotalSqft() {
     var totalAcres = parseFloat($('#total_acres').val()) || 0;
-    var totalSqft = totalAcres * 43560; // 1 acre = 43,560 sq ft
+    var totalSqft = totalAcres * SQFT_PER_ACRE;
     $('#total_sqft').val(totalSqft.toFixed(2));
 }
 </script>

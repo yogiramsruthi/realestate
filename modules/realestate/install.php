@@ -6,7 +6,7 @@ if (!$CI->db->table_exists(db_prefix() . 'realestate_projects')) {
     $CI->db->query('CREATE TABLE `' . db_prefix() . "realestate_projects` (
         `id` int(11) NOT NULL AUTO_INCREMENT,
         `name` varchar(255) NOT NULL,
-        `project_code` varchar(50) DEFAULT NULL UNIQUE,
+        `project_code` varchar(50) DEFAULT NULL,
         `description` text DEFAULT NULL,
         `status` varchar(50) DEFAULT 'draft',
         `project_manager` int(11) DEFAULT NULL,
@@ -42,6 +42,7 @@ if (!$CI->db->table_exists(db_prefix() . 'realestate_projects')) {
         `date_created` datetime NOT NULL,
         `last_updated` datetime DEFAULT NULL,
         PRIMARY KEY (`id`),
+        UNIQUE KEY `project_code` (`project_code`),
         KEY `project_manager` (`project_manager`)
     ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
 }

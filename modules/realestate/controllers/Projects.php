@@ -79,11 +79,20 @@ class Projects extends AdminController
      */
     public function generate_code()
     {
-        $short_name = $this->input->post('short_name');
-        $project_code = $this->projects_model->generate_project_code($short_name);
-        
-        header('Content-Type: application/json');
-        echo json_encode(['project_code' => $project_code]);
+        try {
+            $short_name = $this->input->post('short_name');
+            
+            if (empty($short_name)) {
+                echo json_encode(['success' => false, 'message' => 'Short name is required']);
+                return;
+            }
+            
+            $project_code = $this->projects_model->generate_project_code($short_name);
+            
+            echo json_encode(['success' => true, 'project_code' => $project_code]);
+        } catch (Exception $e) {
+            echo json_encode(['success' => false, 'message' => 'Failed to generate project code']);
+        }
     }
 
     /**
