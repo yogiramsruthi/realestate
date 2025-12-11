@@ -397,7 +397,7 @@
                 <div class="form-group">
                     <label for="document_type"><?php echo _l('realestate_document_type'); ?> *</label>
                     <select name="document_type" class="form-control selectpicker" required>
-                        <option value=""><?php echo _l('realestate_select_project'); ?></option>
+                        <option value="">Select Document Type</option>
                         <option value="parent_document"><?php echo _l('realestate_doc_parent_document'); ?></option>
                         <option value="current_document"><?php echo _l('realestate_doc_current_document'); ?></option>
                         <option value="layout_sketch"><?php echo _l('realestate_doc_layout_sketch'); ?></option>
